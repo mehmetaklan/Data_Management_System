@@ -1,0 +1,48 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HACKATHON.Models.VeriGirisi
+@{
+    ViewData["Title"] = "DegerDuzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Deger Türü Düzenleme Ekranı</h1>
+
+<form asp-controller="Home" asp-action="DegerDuzenle" method="post" class="mt-5">
+	<input type="hidden" asp-for="DegerTuruId"  />
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Deger</span>
+		<input type="text" class="form-control" asp-for=DegerTuru.DegerTuruAdi placeholder="Değer Adı" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Deger Kodu</span>
+		<input type="text" class="form-control" asp-for=DegerTuru.DegerTuruKodu placeholder="Değer Kodu" aria-describedby="basic-addon1">
+	</div>
+	<select asp-for="DegerTuru.Birim" class="form-select mb-2">
+		<option selected>Birim Türü Seçiniz...</option>
+		<option value="Adet">Adet</option>
+		<option value="TL">TL</option>
+		<option value="Litre">Litre</option>
+		<option value="Metin">Metin</option>
+		<option value="Saat">Saat</option>
+		<option value="Gün">Gün</option>
+	</select>
+	<select asp-for="DegerTuru.VeriPeriyodu" class="form-select mb-2">
+		<option selected>Veri Periyodu Seçiniz</option>
+		<option value="3">3 Aylık</option>
+		<option value="6">6 Aylık</option>
+		<option value="12">12 Aylık</option>
+	</select>
+	<div class="input-group mb-3">
+		<span class="input-group-text">Grup</span>
+		<select asp-for="DegerTuru.GrupId" asp-items="ViewBag.GrupListesi" class="form-control"></select>
+	</div>
+	@* <div class="input-group mb-3">
+		<span class="input-group-text">Grup</span>
+		<select asp-for="Grup.Kategori" asp-items="ViewBag.KategoriListesi" class="form-control"></select>
+	</div> *@
+	
+	<div class="d-flex justify-content-around">
+		<input type="submit" class="btn btn-warning btn-large" value="Düzenle" />
+	</div>
+</form>
+

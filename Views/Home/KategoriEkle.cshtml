@@ -1,0 +1,27 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HACKATHON.Models.Kategori
+@{
+	ViewData["Title"] = "KategoriEkle";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kategori Ekleme Ekranı</h1>
+
+<form asp-controller="Home" asp-action="KategoriEkle" method="post" class="mt-5">
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Kategori Adı</span>
+		<input type="text" class="form-control" asp-for="KategoriAdi" placeholder="KategoriAdı" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text">Kategori Açıklama</span>
+		<textarea class="form-control" placeholder="Kategori Detaylarını Belirtiniz..." asp-for=Aciklama aria-label="Kategori Açıklama"></textarea>
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Kategori Id</span>
+		<input type="text" class="form-control" placeholder="Kategori Id Otomatik Atanır." disabled readonly aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="d-flex justify-content-center">
+		<input type="submit" class="btn btn-primary btn-lg" value="Ekle" />
+	</div>
+
+</form>

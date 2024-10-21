@@ -1,0 +1,39 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HACKATHON.Models.SorumluAtama
+@{
+	ViewData["Title"] = "SorumluAta";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Sorumlu Atama Ekranı</h1>
+
+<form asp-controller="Home" asp-action="SorumluAta" method="post" class="mt-5">
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Kategori</span>
+		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.DegerTuruId" readonly disabled aria-describedby="basic-addon1">
+		<input type="hidden" asp-for="DegerTuruId" value="@ViewBag.AtanacakDeger.DegerTuruId" />
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Grup</span>
+		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.GrupId" readonly disabled aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Deger Turu</span>
+		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.DegerTuruAdi" readonly disabled aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Birim</span>
+		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.Birim" readonly disabled aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="basic-addon1">Veri Periyodu</span>
+		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.VeriPeriyodu Aylık" readonly disabled aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text">Atanacak Sorumlu</span>
+		<select asp-for="SorumluId" asp-items="ViewBag.SorumluListesi" class="form-control"></select>
+	</div>
+	<div class="d-flex justify-content-center">
+		<input type="submit" class="btn-success btn" value='Sorumlu Ata'/>
+	</div>
+</form>

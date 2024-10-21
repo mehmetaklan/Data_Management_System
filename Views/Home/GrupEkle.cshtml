@@ -1,0 +1,24 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HACKATHON.Models.Grup
+@{
+    ViewData["Title"] = "GrupEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-controller="Home" asp-action="GrupEkle" class="mt-5" method="post">
+	<div class="input-group mb-3 ">
+		<span class="input-group-text" id="basic-addon1">Deger</span>
+		<input type="text" class="form-control" asp-for=GrupAdi placeholder="Deger Adi" aria-describedby="basic-addon1">
+		
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text">Grup Açıklama</span>
+		<textarea class="form-control" asp-for=Aciklama aria-label="Grup Açıklama"></textarea>
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text">Kategori Seçiniz...</span>
+		<select asp-for="KategoriId" asp-items="ViewBag.Kategoriler" class="form-control"></select>
+	</div>
+	<input type="submit" class="btn btn-primary btn-lg" value="Ekle" />
+    </form>
+

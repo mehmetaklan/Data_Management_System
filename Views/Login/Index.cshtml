@@ -1,0 +1,37 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HACKATHON.Models.Sorumlu
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Sayfası</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="~/loginpage.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-container">
+		<h2 class="text-center mt-5 mb-4"><img src="~/images/logo.png" /> VERİ YÖNETİM SİSTEMİ</h2>
+        
+        <form asp-controller="Login" asp-action="Index" method="post">
+           
+            <div class="form-group">
+                <label for="username">Email </label>
+                <input type="email" class="form-control" id="username" asp-for="Email" placeholder="Email adresinizi girin" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" class="form-control" id="password" asp-for="Parola" placeholder="Şifrenizi girin" required>
+            </div>
+
+            <p style="font-size:20px" class="text-center text-danger fs-6">@ViewBag.ErrorMessage</p>
+            <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+        </form>
+    </div>
+
+    <script src="~/scripts.js"></script>
+
+</body>
+</html>
