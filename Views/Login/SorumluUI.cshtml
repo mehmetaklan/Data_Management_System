@@ -14,44 +14,44 @@
 			<th>Değer Türü</th>
 			<th>Birim</th>
 			<th>Veri Periyodu</th>
+			<th>Yıl	</th>
 			<th>Dönem</th>
-			<th>Yıl</th>
 			<th>Değer</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (var item in Model)
 		{
-			<form asp-controller="Login" asp-action="SorumluUI" method="post">
+			
 			<tr>
 				<td>@item.DegerTuru.Grup.Kategori.KategoriAdi</td>
-				<input type="hidden" name="DegerTuru.Grup.Kategori.KategoriAdi" value="@item.DegerTuru.Grup.Kategori.KategoriAdi" />
-				<input type="hidden" name="DegerTuru.Grup.Kategori" />
+				
 				<td>@item.DegerTuru.Grup.GrupAdi</td>
-				<input type="hidden" name="DegerTuru.Grup.GrupAdi" value="@item.DegerTuru.Grup.GrupAdi" />
-				<input type="hidden" name="DegerTuru.Grup" />
+				
 				<td>@item.DegerTuru.DegerTuruAdi</td>
 				<input type="hidden" name="DegerTuru" />
 
 				<td>@item.DegerTuru.Birim</td>
-				<input type="hidden" name="DegerTuru.Birim" value="@item.DegerTuru.Birim" />
+				
 
 				<td>@item.DegerTuru.VeriPeriyodu</td>
-				<input type="hidden" name="DegerTuru.VeriPeriyodu" value="@item.DegerTuru.VeriPeriyodu" />
+				
 
 				<td>@item.Yil</td>
-				<input type="hidden" name="Yil" value="@item.Yil" />
+				
 
 				<td>@item.Donem</td>
-				<input type="hidden" name="Donem" value="@item.Donem" />
-
+				
+				<form asp-controller="Login" asp-action="SorumluUI" method="post">
 				<td>
-					<input type="text" name="Deger" value="@item.Deger" />
-					<input type="hidden" name="VeriGirisiId" value="@item.VeriGirisiId" />
+					<input class="input-style" type="text" name="deger" value="@item.Deger" />
+					<input type="hidden" name="id" value="@item.VeriGirisiId" />
 					<input type="submit" class="btn btn-success" value="Ekle ➕" />
+					<input type="hidden" name="Sorumlu" value="@ViewBag.Sorumlu"/>
 				</td>
+				</form>
 			</tr>
-			</form>
+			
 
 		}
 	</tbody>

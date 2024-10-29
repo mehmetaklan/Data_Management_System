@@ -98,8 +98,7 @@ namespace HACKATHON.Controllers
 		[HttpGet]
 		public IActionResult DegerDuzenle(int id)
 		{
-			//veri.Donem = DonemHesapla(veri.DegerTuru.VeriPeriyodu);
-			//veri.DegerTuru.Status = true;
+			
 			var DegerTuru = DB.VeriGirisleri.Include(x => x.DegerTuru)
 				.ThenInclude(g => g.Grup).
 				ThenInclude(x => x.Kategori).
@@ -133,6 +132,11 @@ namespace HACKATHON.Controllers
 			veri.Donem = DonemHesapla(veri.DegerTuru.VeriPeriyodu);
 			veri.Yil = YilHesapla(veri.DegerTuru.VeriPeriyodu);
 			veri.DegerTuru.Status = true;
+			//var data = DB.VeriGirisleri.Include(x => x.DegerTuru).Where(x => x.DegerTuruId == veri.DegerTuruId).FirstOrDefault();
+			var data = DB.VeriGirisleri
+					   .Include(x=>x.DegerTuru)
+					   .Where(x=>x.DegerTuruId==veri.DegerTuru.DegerTuruId)
+					   .FirstOrDefault();
 			DB.SaveChanges();
 			return RedirectToAction("Index");
 		}
@@ -150,7 +154,6 @@ namespace HACKATHON.Controllers
 				
 				Deger.DegerTuru.Status = !Deger.DegerTuru.Status;
 
-				
 				DB.SaveChanges();
 
 				return RedirectToAction("Index");
@@ -164,8 +167,11 @@ namespace HACKATHON.Controllers
 		public IActionResult SorumluAta(int id)
 		{
 
-			var AtanacakDeger = DB.DegerTurleri.Find(id);
-
+			var AtanacakDeger = DB.DegerTurleri
+								.Include(x => x.Grup)
+								.ThenInclude(x => x.Kategori)
+								.Where(x => x.DegerTuruId == id)
+								.FirstOrDefault();
 			var SorumluListesi = (from x in DB.Sorumlular.ToList()
 								  select new SelectListItem
 								  {
@@ -193,8 +199,6 @@ namespace HACKATHON.Controllers
 			if (ChangeState != null)
 			{
 				ChangeState.Status = false;
-
-				
 				DB.SaveChanges();
 			}
 

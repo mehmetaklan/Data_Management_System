@@ -1,7 +1,6 @@
 ﻿using HACKATHON.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -76,25 +75,35 @@ namespace HACKATHON.Controllers
     .Where(x => x.DegerTuru.SorumluAtamalari
         .Any(sa => sa.SorumluId == sorumlu.SorumluId)).ToList();
 
-
+            ViewBag.Sorumlu = sorumlu;
 			return View(SorumluVerileri);
         }
 
         [HttpPost]
-        public IActionResult SorumluUI(VeriGirisi veri)
+        public IActionResult SorumluUI(float deger, int id)
         {
-            if (ModelState.IsValid)
-            {   
-				DB.VeriGirisleri.Update(veri);
-				DB.SaveChanges();
-				_logger.LogInformation($"Veri kaydedildi: VeriGirisiID: {veri.VeriGirisiId} - Veri Degeri: {veri.Deger}");
-			}
-			if (!ModelState.IsValid)
-			{
-				_logger.LogWarning("Veri girişinde model geçerli değil.");
-			}
+            var value = DB.VeriGirisleri.Find(id);
+            value.Deger = deger;
+            DB.SaveChanges();
+            //         if (ModelState.IsValid)
+            //         {   
+            //	DB.VeriGirisleri.Update(veri);
+            //	DB.SaveChanges();
+            //	_logger.LogInformation($"Veri kaydedildi: VeriGirisiID: {veri.VeriGirisiId} - Veri Degeri: {veri.Deger}");
+            //}
+            //if (!ModelState.IsValid)
+            //{
+            //	_logger.LogWarning("Veri girişinde model geçerli değil.");
+            //}
+            var DegerTuruID = value.DegerTuruId;
 
-			return RedirectToAction("SorumluUI");
+			var CheckSorumluId = DB.Sorumlular
+				.Include(x => x.SorumluAtamalari)  // Sorumlu ile ilişkili SorumluAtamalari tablosunu yükler
+					.ThenInclude(sa => sa.DegerTuru)  // SorumluAtamalari ile ilişkili DegerTuru tablosunu yükler
+				.Where(s => s.SorumluAtamalari.Any(sa => sa.DegerTuru.DegerTuruId == DegerTuruID))  // DegerTuruId ile filtreleme
+				.FirstOrDefault();  // İlk eşl
+
+			return RedirectToAction("SorumluUI",CheckSorumluId);
         }
     }
 }

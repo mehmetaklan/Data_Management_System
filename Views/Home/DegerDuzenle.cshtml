@@ -11,7 +11,7 @@
 	<input type="hidden" asp-for="DegerTuruId"  />
 	<div class="input-group mb-3">
 		<span class="input-group-text" id="basic-addon1">Deger</span>
-		<input type="text" class="form-control" asp-for=DegerTuru.DegerTuruAdi placeholder="Değer Adı" aria-describedby="basic-addon1">
+		<input type="text" class="form-control" asp-for=DegerTuru.DegerTuruAdi name="DegerTuruAdi" placeholder="Değer Adı" aria-describedby="basic-addon1">
 	</div>
 	<div class="input-group mb-3">
 		<span class="input-group-text" id="basic-addon1">Deger Kodu</span>
@@ -34,7 +34,7 @@
 	</select>
 	<div class="input-group mb-3">
 		<span class="input-group-text">Grup</span>
-		<select asp-for="DegerTuru.GrupId" asp-items="ViewBag.GrupListesi" class="form-control"></select>
+		<select asp-for="DegerTuru.GrupId"  asp-items="ViewBag.GrupListesi" class="form-control"></select>
 	</div>
 	@* <div class="input-group mb-3">
 		<span class="input-group-text">Grup</span>

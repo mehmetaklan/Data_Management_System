@@ -10,12 +10,13 @@
 <form asp-controller="Home" asp-action="SorumluAta" method="post" class="mt-5">
 	<div class="input-group mb-3">
 		<span class="input-group-text" id="basic-addon1">Kategori</span>
-		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.DegerTuruId" readonly disabled aria-describedby="basic-addon1">
+
+		<input type="text" class="form-control"  value="@ViewBag.AtanacakDeger.Grup.Kategori.KategoriAdi" readonly disabled aria-describedby="basic-addon1">
 		<input type="hidden" asp-for="DegerTuruId" value="@ViewBag.AtanacakDeger.DegerTuruId" />
 	</div>
 	<div class="input-group mb-3">
 		<span class="input-group-text" id="basic-addon1">Grup</span>
-		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.GrupId" readonly disabled aria-describedby="basic-addon1">
+		<input type="text" class="form-control" value="@ViewBag.AtanacakDeger.Grup.GrupAdi" readonly disabled aria-describedby="basic-addon1">
 	</div>
 	<div class="input-group mb-3">
 		<span class="input-group-text" id="basic-addon1">Deger Turu</span>
@@ -34,6 +35,7 @@
 		<select asp-for="SorumluId" asp-items="ViewBag.SorumluListesi" class="form-control"></select>
 	</div>
 	<div class="d-flex justify-content-center">
+		<input type="type"  value="" />
 		<input type="submit" class="btn-success btn" value='Sorumlu Ata'/>
 	</div>
 </form>
